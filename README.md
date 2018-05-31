@@ -25,7 +25,7 @@ https://github.com/toddrob99/pyprowl
 
 ## Changelog
 
-###v1.0
+### v1.0
 * Supports verification of API key and sending of notifications
 * API key can be set at instantiation and left out of subsequent calls, or it can be set on each call
 * App name can be set at instantiation and left out of subsequent calls, or it can be set on each call to notify()
