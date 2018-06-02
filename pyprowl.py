@@ -2,6 +2,7 @@
 """
 pyprowl is a Python 2.7 module used to interface with the Prowl API.
 Get more information about Prowl and generate your API key at http://prowlapp.com.
+https://github.com/toddrob99/pyprowl
 
 Example usage:
 
@@ -24,7 +25,7 @@ except Exception, e:
 """
 
 class Prowl:
-    def __init__(self, apiKey=None, appName="pyprowl"):
+    def __init__(self, apiKey="", appName="pyprowl"):
         self.apiKey = apiKey
         self.appName = appName
 
