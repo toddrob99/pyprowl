@@ -1,6 +1,9 @@
 # pyprowl
+
 Python module for sending Prowl notifications
+
 Created by Todd Roberts
+
 https://github.com/toddrob99/pyprowl
 
 ## Usage
@@ -24,6 +27,9 @@ https://github.com/toddrob99/pyprowl
 		print "Error sending notification to Prowl:",e
 
 ## Changelog
+
+### v1.0.1
+* Updated package layout for submission to PyPI
 
 ### v1.0
 * Supports verification of API key and sending of notifications
