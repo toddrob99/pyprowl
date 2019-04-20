@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="pyprowl-toddrob",
+    name="pyprowl",
     version="1.0.1",
     author="Todd Roberts",
     author_email="todd@toddrob.com",
