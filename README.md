@@ -29,7 +29,7 @@ https://github.com/toddrob99/pyprowl
 ## Changelog
 
 ### v1.0.2
-* Fixed package layout (moved code from pyprowl.py to __init__.py to support importing of module)
+* Fixed package layout (moved code from `pyprowl.py` to `__init__.py` to support importing of module)
 
 ### v1.0.1
 * Updated package layout for submission to PyPI
