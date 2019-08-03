@@ -9,21 +9,24 @@ Example usage:
 import pyprowl
 
 p = pyprowl.Prowl('YOUR_PROWL_API_KEY')
+
 try:
     p.verify_key()
-    print "Prowl API key successfully verified!"
-except Exception, e:
-    print "Error verifying Prowl API key:",e
+    print("Prowl API key successfully verified!")
+except Exception as e:
+    print("Error verifying Prowl API key: {}".format(e))
     exit()
 
 try:
-    p.notify('Event name', 'Description of event', apiKey='include if different', 
-             priority=0, url='http://www.example.com', appName='Name of app sending the notification')
-    print "Notification successfully sent to Prowl!"
-except Exception, e:
-    print "Error sending notification to Prowl:",e
+    p.notify(event='Event name', description='Description of event', 
+             priority=0, url='http://www.example.com', 
+             #apiKey='uncomment and add API KEY here if different', 
+             appName='Name of app sending the notification')
+    print("Notification successfully sent to Prowl!")
+except Exception as e:
+    print("Error sending notification to Prowl: {}".format(e))
 """
-__version__ = '1.0.2'
+__version__ = '3.0.0'
 
 class Prowl:
     def __init__(self, apiKey="", appName="pyprowl"):
@@ -88,19 +91,13 @@ class Prowl:
         This function is usually not called directly. Instead use notify() or verify_key()
         """
 
-        import urllib2, urllib
-        url = 'https://api.prowlapp.com/publicapi/'+action
-        if action=='verify': url += "?"+urllib.urlencode(data)
-
+        import requests
         try:
-            req = urllib2.Request(url=url,data=urllib.urlencode(data))
-            response = urllib2.urlopen(req).read()
-        except urllib2.HTTPError as e:
-            response = {'status':'error', 'code':str(e.code), 'message':e.reason}
-        except urllib2.URLError as e:
-            response = {'status':'error', 'code':'0', 'message':'Connection error', 'errMsg':e.reason}
-        except Exception as e:
-            response = {'status':'error', 'code':'-1', 'message':'Unknown error', 'errMsg':e}
+            import urllib.parse as Parse #python 3
+        except:
+            import urllib as Parse #python 2
+        url = 'https://api.prowlapp.com/publicapi/'+action
+        if action=='verify': url += "?"+Parse.urlencode(data)
 
         statusMessages = {   
                             '0'  : 'Connection error',
@@ -113,6 +110,12 @@ class Prowl:
                             '500': 'Internal server error, something failed to execute properly on the Prowl side.'
                         }
 
+        r = requests.post(url,data)
+        if r.status_code != 200:
+            response = {'status':'error', 'code':str(r.status_code), 'message':statusMessages.get(str(r.status_code),statusMessages['-1'])}
+        else:
+            response = r.content
+
         if isinstance(response,dict):
             if not response.get('errMsg',None): response.update({'errMsg':statusMessages[response.get('code')]})
         else:
@@ -121,7 +124,7 @@ class Prowl:
             child = root[0]
             response = {}
             response.update({'status':child.tag, 'message':child.text, 'errMsg':statusMessages[child.get('code')]})
-            for key,val in child.attrib.items():
+            for key,val in list(child.attrib.items()):
                 response.update({key:val})
 
         if response.get('status')=='success':

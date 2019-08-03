@@ -28,6 +28,9 @@ https://github.com/toddrob99/pyprowl
 
 ## Changelog
 
+### v3.0.0
+* Added support for python 3 using requests module
+
 ### v1.0.2
 * Fixed package layout (moved code from `pyprowl.py` to `__init__.py` to support importing of module)
 
