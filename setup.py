@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pyprowl",
-    version="3.0.0",
+    version="3.0.1",
     author="Todd Roberts",
     author_email="todd@toddrob.com",
     description="Prowl API wrapper for Python",

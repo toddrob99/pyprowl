@@ -30,7 +30,7 @@ https://github.com/toddrob99/pyprowl
 
 ## Changelog
 
-### v3.0.0
+### v3.0.1
 * Added support for python 3 using requests module
 
 ### v1.0.2

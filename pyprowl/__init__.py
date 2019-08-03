@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 """
-pyprowl is a Python 2.7 module used to interface with the Prowl API.
+pyprowl is a Python module used to interface with the Prowl API.
 Get more information about Prowl and generate your API key at http://prowlapp.com.
 https://github.com/toddrob99/pyprowl
 
@@ -26,7 +26,7 @@ try:
 except Exception as e:
     print("Error sending notification to Prowl: {}".format(e))
 """
-__version__ = '3.0.0'
+__version__ = '3.0.1'
 
 class Prowl:
     def __init__(self, apiKey="", appName="pyprowl"):
